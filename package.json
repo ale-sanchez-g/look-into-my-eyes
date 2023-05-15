@@ -4,7 +4,8 @@
   "description": "An example tutorial for Playwright TypeScript using Applitools Ultrafast Grid",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test --project chromium"
+    "test": "npx playwright test --project chromium",
+    "build": "APPLITOOLS_IS_DISABLED=True npx playwright test --project chromium --debug"
   },
   "author": "Applitools Team <team@applitools.com> (http://www.applitools.com/)",
   "license": "Apache License 2.0",

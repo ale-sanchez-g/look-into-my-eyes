@@ -108,6 +108,7 @@ dist
 
 # Playwright
 playwright-report
+test-results/
 
 # Env
 .env

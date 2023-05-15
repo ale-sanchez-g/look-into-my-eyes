@@ -44,9 +44,10 @@ test.beforeAll(async () => {
     Config.addBrowser(1024, 768, BrowserType.SAFARI);
 
     // Add 2 mobile emulation devices with different orientations for cross-browser testing in the Ultrafast Grid.
-    // Other mobile devices are available, including iOS.
     Config.addDeviceEmulation(DeviceName.Pixel_2, ScreenOrientation.PORTRAIT);
     Config.addDeviceEmulation(DeviceName.Nexus_10, ScreenOrientation.LANDSCAPE);
+    // Add 1 real mobile device
+    Config.addMobileDevice(DeviceName.iPhone_11_Pro_Max, ScreenOrientation.PORTRAIT);
 });
 
 test.describe('Visit Millan', () => {
@@ -106,12 +107,16 @@ test.describe('Visit Millan', () => {
 
         // Search for a topic - does not exists
         await page.locator('.search__toggle').click();
-        await page.fill('.search', 'testcafe');
+        await page.fill('#search', 'testcafe');
+        await page.keyboard.press('Enter');
+        await page.waitForLoadState('networkidle');
         await eyes.check('Empty Search', Target.window().fully());
 
 
         // Search for an specific article
-        await page.fill('.search', 'The paradigm of QualityPermalink');
+        await page.fill('#search', 'The paradigm of Quality');
+        await page.keyboard.press('Enter');
+        await page.waitForLoadState('networkidle');
         await eyes.check('Article Search', Target.window().fully());
 
     });
@@ -136,5 +141,6 @@ test.afterAll(async () => {
     // Close the batch and report visual differences to the console.
     // Note that it forces Playwright to wait synchronously for all visual checkpoints to complete.
     const results = await Runner.getAllTestResults();
-    console.log('Visual test results', results);
+    console.log('Visual test =>  ', results);
+
 });
