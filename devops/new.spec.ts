@@ -94,6 +94,8 @@ test.describe('Visit Devops1', () => {
         "https://"+domain,
         "https://"+domain+"/services",
         "https://"+domain+"/services/quality-and-observability",
+        "https://"+domain+"/services/cloud-acceleration-program",
+        "https://"+domain+"/services/release-acceleration-program",
         "https://"+domain+"/projects",
         "https://"+domain+"/projects/quality-engineering-transformation",
         "https://"+domain+"/partners",
