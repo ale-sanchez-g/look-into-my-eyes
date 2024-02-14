@@ -89,7 +89,7 @@ test.describe('Visit Devops1', () => {
     // but the verifications use one-line snapshot calls with Applitools Eyes.
     // If the page ever changes, then Applitools will detect the changes and highlight them in the Eyes Test Manager.
     // Traditional assertions that scrape the page for text values are not needed here.
-    const domain = 'deploy-preview-28--devops1-au.netlify.app'
+    const domain = 'devops1.com.au'
     const pages = [
         "https://"+domain,
         "https://"+domain+"/services",
@@ -121,7 +121,7 @@ test.describe('Visit Devops1', () => {
             await page.goto(pg);
             // Verify the full home page loaded correctly.
             // as the content will change, we use layout match level
-            await eyes.setMatchLevel('Layout');
+            await eyes.setMatchLevel('Strict');
             await eyes.check(`${last}`, Target.window().fully());    
         }); 
     });
