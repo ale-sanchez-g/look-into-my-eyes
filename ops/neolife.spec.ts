@@ -114,7 +114,7 @@ test.beforeAll(async () => {
     // Add 3 desktop browsers with different viewports for cross-browser testing in the Ultrafast Grid.
     // Other browsers are also available, like Edge and IE.
     // Config.addBrowser(800, 600, BrowserType.CHROME);
-    // Config.addBrowser(1600, 1200, BrowserType.FIREFOX);
+    Config.addBrowser(1600, 1200, BrowserType.SAFARI);
     Config.addBrowser(1024, 768, BrowserType.CHROME);
 
     // // Add 2 mobile emulation devices with different orientations for cross-browser testing in the Ultrafast Grid.
@@ -185,11 +185,16 @@ test.describe('NeoLife', () => {
     links.forEach((link, index) => {
         test(`Visit ${link}`, async ({ page }) => {
             await page.goto(link);
-                        
+
+            await page.waitForLoadState('domcontentloaded');
+
             // scroll to the bottom of the page
             await page.evaluate(() => {
                 window.scrollBy(0, window.innerHeight);
             });
+
+            await page.waitForLoadState('domcontentloaded');
+
             // scroll to the bottom of the page
             await page.evaluate(() => {
                 window.scrollBy(0, window.innerHeight);
