@@ -90,7 +90,7 @@ test.describe('Visit Devops1', () => {
     // If the page ever changes, then Applitools will detect the changes and highlight them in the Eyes Test Manager.
     // Traditional assertions that scrape the page for text values are not needed here.
     // const domain = 'devops1.com.au'
-    const domain = 'deploy-preview-38--devops1-au.netlify.app'
+    const domain = 'deploy-preview-40--devops1-au.netlify.app'
     const pages = [
         "https://"+domain,
         "https://"+domain+"/services",
@@ -101,12 +101,14 @@ test.describe('Visit Devops1', () => {
         "https://"+domain+"/projects/quality-engineering-transformation",
         "https://"+domain+"/partners",
         "https://"+domain+"/partners/delphix",
+        "https://"+domain+"/partners/gitlab",
         "https://"+domain+"/about",
         "https://"+domain+"/careers",
         "https://"+domain+"/blog",
         "https://"+domain+"/blog/the-elevation-of-quality-engineering-an-exploration-of-visual-validation-tools",
         "https://"+domain+"/contact",
-        "https://"+domain+"/project-planner"
+        "https://"+domain+"/project-planner",
+        "https://"+domain+"/privacy-policy",
     ];
 
 

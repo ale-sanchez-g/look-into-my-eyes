@@ -185,22 +185,23 @@ test.describe('NeoLife', () => {
     links.forEach((link, index) => {
         test(`Visit ${link}`, async ({ page }) => {
             await page.goto(link);
-
-            await page.waitForLoadState('networkidle');
-
-            // scroll to the bottom of the page
-            await page.evaluate(() => {
-                window.scrollBy(0, window.innerHeight);
-            });
-
-            await page.waitForLoadState('networkidle');
+            // To handle lazyLoad across different pages
+            await page.waitForTimeout(5000);
 
             // scroll to the bottom of the page
             await page.evaluate(() => {
                 window.scrollBy(0, window.innerHeight);
             });
-            
-            await page.waitForLoadState('networkidle');
+
+            // To handle lazyLoad across different pages
+            await page.waitForTimeout(5000);
+
+            // scroll to the bottom of the page
+            await page.evaluate(() => {
+                window.scrollBy(0, window.innerHeight);
+            });
+            // To handle lazyLoad across different pages
+            await page.waitForTimeout(5000);
             await eyes.setMatchLevel('Layout');
             await eyes.check('Sitemap - ' + link, Target.window().fully());
         });
