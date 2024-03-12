@@ -89,29 +89,39 @@ test.describe('Visit Devops1', () => {
     // but the verifications use one-line snapshot calls with Applitools Eyes.
     // If the page ever changes, then Applitools will detect the changes and highlight them in the Eyes Test Manager.
     // Traditional assertions that scrape the page for text values are not needed here.
+    // const domain = 'devops1.com.au'
+    const domain = 'deploy-preview-45--devops1-au.netlify.app'
     const pages = [
-        "https://devops1.com.au",
-        "https://devops1.com.au/services",
-        "https://devops1.com.au/services/quality-and-observability",
-        "https://devops1.com.au/projects",
-        "https://devops1.com.au/projects/quality-engineering-transformation",
-        "https://devops1.com.au/partners",
-        "https://devops1.com.au/partners/delphix",
-        "https://devops1.com.au/about",
-        "https://devops1.com.au/careers",
-        "https://devops1.com.au/blog",
-        "https://devops1.com.au/blog/the-elevation-of-quality-engineering-an-exploration-of-visual-validation-tools",
-        "https://devops1.com.au/contact",
-        "https://devops1.com.au/project-planner"
+        "https://"+domain,
+        "https://"+domain+"/services",
+        "https://"+domain+"/services/quality-and-observability",
+        "https://"+domain+"/services/cloud-acceleration-program",
+        "https://"+domain+"/services/release-acceleration-program",
+        "https://"+domain+"/projects",
+        "https://"+domain+"/projects/quality-engineering-transformation",
+        "https://"+domain+"/partners",
+        "https://"+domain+"/partners/delphix",
+        "https://"+domain+"/partners/gitlab",
+        "https://"+domain+"/about",
+        "https://"+domain+"/careers",
+        "https://"+domain+"/blog",
+        "https://"+domain+"/blog/the-elevation-of-quality-engineering-an-exploration-of-visual-validation-tools",
+        "https://"+domain+"/contact",
+        "https://"+domain+"/project-planner",
+        "https://"+domain+"/privacy-policy",
     ];
 
 
     pages.forEach(pg => {
-        test('Go to '+ pg, async ({ page }) => {
+        let last = pg.split("/").pop() as string;
+        // set let to to home if it contiains the domain
+        if (last.includes(domain)) {
+            last = 'homepage';
+        }
+        test('Go to '+ last, async ({ page }) => {
 
             // Go to page
             await page.goto(pg);
-            let last = pg.split("/").pop();
             // Verify the full home page loaded correctly.
             // as the content will change, we use layout match level
             await eyes.setMatchLevel('Layout');

@@ -1,9 +1,17 @@
 name: Run all tests
 
 on:
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
+    inputs:
+      testLevel:
+        description: 'Folder Test'
+        required: true
+        default: 'ops'
+        type: choice
+        options:
+          - ops
+          - devops
+          - test
 
 jobs:
   test:
@@ -25,7 +33,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npm test
+        run: npx playwright test /${{ inputs.testLevel }}/ --project chromium
         env:
           APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
 
